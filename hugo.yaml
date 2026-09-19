@@ -1,6 +1,6 @@
 baseURL: https://danlauren.wedding
 title: Our Wedding
-theme: ["Papermod"]
+theme: ["PaperMod"]
 
 menu:
   main:
