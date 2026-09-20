@@ -3,6 +3,7 @@
   --border: rgba(255, 255, 255, .14);
   --blur: saturate(140%) blur(6px);
   --max-width: 1024px;
+  --font-family: "Calisto MT", Georgia, serif;
   /* Pink Shades */
   --color-pink-light: #F9EBE6;
   --color-pink-medium: #E4C1B6;
@@ -21,19 +22,17 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; min-height: 100vh; color: var(--text); background: var(--color-neutral-light); font: 400 1rem/1.65 Inter, sans-serif; }
+body { margin: 0; min-height: 100vh; color: var(--text); background: var(--color-neutral-light); font: 400 1rem/1.65 var(--font-family); }
 .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; 
     background: radial-gradient(1200px circle at 75% 10%, var(--bg-r1), transparent 55%), radial-gradient(900px circle at 15% 85%, var(--bg-r2), transparent 50%), 
     linear-gradient(180deg, var(--bg-base-top), var(--bg-base-bottom)); }
 .bg::after { content: ""; position: absolute; inset: 0; background: rgba(20, 18, 18, .25); }
-.bg-slide { position: absolute; inset: 0; background-position: center; background-size: cover; opacity: 0; transition: opacity 1.2s ease-in-out; }
-.bg-slide.active { opacity: 1; }
 #content { position: relative; z-index: 1; }
 .hero { min-height: 100svh; min-height: 100dvh; display: grid; place-items: center; padding: 5rem 1.2rem 3rem; }
 .hero-inner, .container { width: min(92vw, var(--max-width)); border: 1px solid var(--border); border-radius: 18px; background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.06)); backdrop-filter: var(--blur); box-shadow: 0 20px 60px rgba(0,0,0,.3); }
 .hero-inner { padding: 2.2rem 1.4rem; text-align: center; }
-.monogram { font-family: "Playfair Display", serif; opacity: .95; }
-h1 { margin: .35rem 0 .25rem; font: 400 clamp(2.4rem, 8vw, 4.8rem)/1.1 "Great Vibes", cursive; text-shadow: 0 2px 18px rgba(0,0,0,.45); }
+.monogram { font-family: var(--font-family); opacity: .95; }
+h1 { margin: .35rem 0 .25rem; font: 400 clamp(2.4rem, 8vw, 4.8rem)/1.1 var(--font-family); text-shadow: 0 2px 18px rgba(0,0,0,.45); }
 .names-image { margin: .35rem auto .6rem; line-height: 0; }
 .names-image img { display: block; width: min(100%, 760px); height: auto; margin: 0 auto; }
 .tagline { font-size: clamp(1rem, 2.6vw, 1.2rem); }
@@ -43,8 +42,8 @@ h1 { margin: .35rem 0 .25rem; font: 400 clamp(2.4rem, 8vw, 4.8rem)/1.1 "Great Vi
 .button:hover { transform: translateY(-1px); border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.08); }
 section { position: relative; padding: 3rem 1.2rem; }
 .container { margin: 0 auto; padding: 1.8rem; }
-h2 { margin: .25rem 0 1rem; font: 600 clamp(1.6rem, 4vw, 2.2rem)/1.2 "Playfair Display", serif; }
-h2::after { content: ""; display: block; height: 10px; margin-top: .45rem; background: radial-gradient(circle at left, var(--accent-1), transparent 60%), radial-gradient(circle at center, var(--accent-3), transparent 55%), radial-gradient(circle at right, var(--accent-2), transparent 60%); border-radius: 999px; }
+h2 { margin: .25rem 0 1rem; font: 600 clamp(1.6rem, 4vw, 2.2rem)/1.2 var(--font-family); color: var(--accent-1);  }
+h2::after { content: ""; display: block; height: 10px; margin-top: .45rem; background: radial-gradient(circle at left, var(--accent-1)), radial-gradient(circle at center, var(--accent-3)), radial-gradient(circle at right, var(--accent-2)); border-radius: 999px; }
 .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
 .grid > * { grid-column: span 12; }
 .card { padding: 1rem; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; background: rgba(255,255,255,.06); }
@@ -58,4 +57,4 @@ h2::after { content: ""; display: block; height: 10px; margin-top: .45rem; backg
 footer { padding: 2.5rem 1.25rem 4.5rem; text-align: center; opacity: .95; }
 .page-shell { position: relative; z-index: 1; min-height: 100vh; padding: 4rem 1.2rem; }
 @media (min-width: 860px) { .grid.two > * { grid-column: span 6; } }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .bg-slide, .button { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button { transition: none; } }

@@ -14,9 +14,6 @@
   }
 </style>
 <div class="bg" aria-hidden="true">
-  {{ range $index, $photo := $wedding.slideshow.photos }}
-    <div class="bg-slide{{ if eq $index 0 }} active{{ end }}" style="background-image:url('{{ $photo | relURL }}')"></div>
-  {{ end }}
 </div>
 
 <main id="content">
@@ -65,5 +62,4 @@
 
   <footer>{{ $wedding.ui.footerNote | default "Made with love for family and friends." }}</footer>
 </main>
-
 {{ end }}
