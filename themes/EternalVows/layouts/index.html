@@ -5,13 +5,14 @@
 {{ $story := site.GetPage "/posts/aboutus" }}
 <style>
   :root {
-    --accent-1: {{ $colors.accent1 | default "#E4C1B6" }};
-    --accent-2: {{ $colors.accent2 | default "#DCD2C6" }};
-    --accent-3: {{ $colors.accent3 | default "#B9C8B5" }};
-    --bg-base-top: {{ $colors.baseTop | default "#F9EBE6" }};
-    --bg-base-bottom: {{ $colors.baseBottom | default "#F2EEE8" }};
-    --bg-r1: {{ $colors.radial1 | default "rgba(242, 238, 232, 0.45)" | safeCSS }};
-    --bg-r2: {{ $colors.radial2 | default "rgba(249, 235, 230, 0.38)" | safeCSS }};
+    --text: {{ $colors.text | default "#ffffff" }};
+    --accent-1: {{ index $colors "color-green-dark" | default "#697665" }};
+    --accent-2: {{ index $colors "color-pink-medium" | default "#E4C1B6" }};
+    --accent-3: {{ index $colors "color-green-medium" | default "#B9C8B5" }};
+    --color-pink-light: {{ index $colors "color-pink-light" | default "#F9EBE6" }};
+    --color-neutral-light: {{ index $colors "color-neutral-light" | default "#F2EEE8" }};
+    --color-neutral-medium: {{ index $colors "color-neutral-medium" | default "#DCD2C6" }};
+    --color-neutral-dark: {{ index $colors "color-neutral-dark" | default "#A99E91" }};
   }
 </style>
 <div class="bg" aria-hidden="true">
@@ -20,7 +21,6 @@
 <main id="content">
   <header class="hero">
     <div class="hero-inner">
-      <span class="monogram">{{ $wedding.ui.monogram | default "You're invited" }}</span>
       <h1 class="names-image"><img src="{{ "images/names_w.png" | relURL }}" alt="{{ $wedding.coupleNames | default site.Title }}"></h1>
       {{ if or $wedding.dateDisplay $wedding.locationShort }}
         <div class="tagline">
@@ -30,7 +30,7 @@
         </div>
       {{ end }}
       <nav class="button-row" aria-label="Invitation sections">
-        {{ with $wedding.rsvp.buttons }}{{ if gt (len .) 0 }}<a class="button primary" href="#rsvp">{{ $sections.rsvp.nav | default "RSVP" }}</a>{{ end }}{{ end }}
+        {{ with $wedding.rsvp }}{{ if or .embedUrl (gt (len .buttons) 0) }}<a class="button primary" href="#rsvp">{{ $sections.rsvp.nav | default "RSVP" }}</a>{{ end }}{{ end }}
         {{ if $story }}<a class="button" href="#story">{{ $sections.story.nav | default "Story" }}</a>{{ end }}
         {{ with $wedding.schedule }}{{ if gt (len .) 0 }}<a class="button" href="#schedule">{{ $sections.schedule.nav | default "Schedule" }}</a>{{ end }}{{ end }}
         {{ with $wedding.venues }}{{ if gt (len .) 0 }}<a class="button" href="#venue">{{ if gt (len .) 1 }}{{ $sections.venue.navPlural | default "Venues" }}{{ else }}{{ $sections.venue.nav | default "Venue" }}{{ end }}</a>{{ end }}{{ end }}
@@ -41,18 +41,34 @@
     </div>
   </header>
 
-  {{ with $wedding.rsvp }}
-    {{ if or .embedUrl (gt (len .buttons) 0) }}<section id="rsvp"><div class="container"><h2>{{ $sections.rsvp.heading | default "RSVP" }}</h2><p class="muted">{{ $wedding.ui.rsvpText | default "Please let us know if you can make it." }}</p>{{ with .embedUrl }}<iframe class="rsvp-embed" src="{{ . }}" title="{{ $wedding.rsvp.embedTitle | default "RSVP form" }}" loading="lazy"></iframe>{{ end }}{{ if gt (len .buttons) 0 }}<div class="button-row">{{ range .buttons }}<a class="button primary" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}</div>{{ end }}</div></section>{{ end }}
-  {{ end }}
-
   {{ if $story }}<section id="story"><div class="container"><h2>{{ $sections.story.heading | default "Our Story" }}</h2><div class="prose muted">{{ $story.Content }}</div></div></section>{{ end }}
 
   {{ with $wedding.schedule }}
-    {{ if gt (len .) 0 }}<section id="schedule"><div class="container"><h2>{{ $sections.schedule.heading | default "Schedule" }}</h2><div class="grid">{{ range . }}<article class="card"><div class="row"><strong>{{ .title }}</strong><span class="pill">{{ .time }}</span></div><div class="muted card-detail">{{ .details }}</div></article>{{ end }}</div></div></section>{{ end }}
+    {{ if gt (len .) 0 }}
+    <section id="schedule">
+        <div class="container">
+        <h2>{{ $sections.schedule.heading | default "Schedule" }}</h2>
+        <div class="grid">{{ range . }}
+          <article class="card">
+            <div class="row"><strong>{{ .title }}</strong><span class="pill">{{ .time }}</span>
+            </div>
+            <div class="muted card-detail">{{ .details }}
+            </div>
+          </article>{{ end }}
+        </div>
+      </div>
+    </section>{{ end }}
   {{ end }}
 
   {{ with $wedding.venues }}
     {{ if gt (len .) 0 }}<section id="venue"><div class="container"><h2>{{ if gt (len .) 1 }}{{ $sections.venue.headingPlural | default "Venues" }}{{ else }}{{ $sections.venue.heading | default "Venue" }}{{ end }}</h2><div class="grid">{{ range . }}{{ $venue := . }}<article class="card"><div class="row"><div>{{ with .label }}<span class="pill">{{ . }}</span>{{ end }}<strong class="venue-name">{{ .name }}</strong></div><div class="button-row">{{ with .mapLink }}<a class="pill" href="{{ . }}" target="_blank" rel="noopener">{{ $sections.venue.mapLink | default "Open Map" }}</a>{{ end }}{{ with .website }}<a class="pill" href="{{ . }}" target="_blank" rel="noopener">{{ $sections.venue.websiteLink | default "Visit Website" }}</a>{{ end }}</div></div><div class="muted card-detail">{{ .address }}</div>{{ with .notes }}<div class="muted card-detail">{{ . }}</div>{{ end }}</article>{{ end }}</div></div></section>{{ end }}
+  {{ end }}
+
+  {{ with $wedding.rsvp }}
+    {{ if or .embedUrl (gt (len .buttons) 0) }}<section id="rsvp"><div class="container"><h2>{{ $sections.rsvp.heading | default "RSVP" }}</h2>
+      <p class="prose muted">{{ $wedding.ui.rsvpText | default "Please let us know if you can make it." }}</p>
+      {{ with .embedUrl }}<iframe class="rsvp-embed" src="{{ . }}" title="{{ $wedding.rsvp.embedTitle | default "RSVP form" }}"  frameborder="0"></iframe>{{ end }}
+      {{ if gt (len .buttons) 0 }}<div class="button-row">{{ range .buttons }}<a class="button primary" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}</div>{{ end }}</div></section>{{ end }}
   {{ end }}
 
   {{ with $wedding.photoUpload.url }}<section id="photoshare"><div class="container"><h2>{{ $sections.photoshare.heading | default "Share Your Photos" }}</h2><p class="muted">{{ $wedding.ui.photoshareText | default "We'd love to see the day through your eyes. Add your pictures to our shared album!" }}</p><div class="button-row"><a class="button primary" href="{{ . }}" target="_blank" rel="noopener">{{ $sections.photoshare.link | default "Upload to Album" }}</a></div></div></section>{{ end }}

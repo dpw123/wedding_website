@@ -1,17 +1,21 @@
 coupleNames: "Lauren Cheveralls & Daniel Welch"
 dateDisplay: "31 AUGUST 2027"
-locationShort: "Chicheley Hall"
+#locationShort: "Chicheley Hall"
 
 ui:
   title: "Lauren Cheveralls & Daniel Welch"
   monogram: "You're invited"
   footerNote: "Made with love for family and friends."
-  rsvpText: "Please let us know if you can make it."
+  rsvpText: >
+    Please let us know if you can make it. 
+
+    If you would like to stay at Chicheley Hall, please let us know - We can get a discount for you if we know in advance. First come, first served!
+
   photoshareText: "We'd love to see the day through your eyes. Add your pictures to our shared album!"
   sections:
     rsvp:
       nav: "RSVP"
-      heading: "RSVP"
+      heading: "RSVP by 31 October 2026"
     story:
       nav: "Story"
       heading: "Our Story"
@@ -33,10 +37,26 @@ ui:
       nav: "Registry"
       heading: "Registry"
     faqs:
-      nav: "FAQ"
-      heading: "FAQ"
-  colors:
-    accent1: "#697665"
+      nav: "Q&A"
+      heading: "All The Details"
+  colors:  
+    text: "#AD8C84"
+     # /* Pink Shades */
+    color-pink-light: "#F9EBE6"
+    color-pink-medium: "#E4C1B6"
+    color-pink-dark: "#AD8C84"
+
+     # /* Neutral Shades */
+    color-neutral-light: "#F2EEE8"  
+    color-neutral-medium: "#DCD2C6"
+    color-neutral-dark: "#A99E91" 
+
+    #  /* Green Shades */
+    color-green-light: "#E3EDE4"
+    color-green-medium: "#B9C8B5"
+    color-green-dark: "#697665" 
+
+    accent1: "#697665" # 
     accent2: "#697665"
     accent3: "#697665"
     baseTop: "#F2EEE8"
@@ -47,23 +67,60 @@ ui:
 rsvp:
   embedUrl: "https://rsvp.danlauren.wedding"
   embedTitle: "RSVP form"
-  buttons: []
+  buttons: [ ]
 
 # Add one item per event. The Schedule section appears when this list is non-empty.
 schedule: 
-  - title: Ceremony
+  - title: Arrive
+    time: "1:00 PM"
+    details: "You are welcome to arrive for a drink in the Peacock Bar"
+  - title: Join
     time: "2:00 PM"
-    details: "The ceremony begins."
-
-  - title: Reception
+    details: "The Ceremony begins"
+  - title: Celebrate
+    time: "2:30 PM"
+    details: "Processo, canapes and photograps"
+  - title: Feast 
     time: "4:00 PM"
-    details: "Dinner, drinks, and dancing."
+    details: "Wedding Breakfast and Speeches"
+  - title: Party
+    time: "7:00 PM"
+    details: "Evening Guests Arrive, Cake Cutting, Dancing and Celebration"
+  - title: Sleep
+    time: "00:01 AM"
+    details: "Our 3 Year anniversary, and the end of the celebrations"
 venues:
   - name: Chicheley Hall
     address: "Chicheley, Newport Pagnell MK16 9AJ"
     mapLink: "https://maps.app.goo.gl/wXF9MwR94VskXkyk9"
     website: "https://www.chicheleyhall.co.uk/"
+  - name: Alternative Hotel
+    address: "Holiday Inn Milton Keynes"
+    mapLink: "https://maps.app.goo.gl/CHbW7v9PoM8RUyah9"
+    website: "https://www.ihg.com/holidayinn/hotels/gb/en/newport-pagnell/mlklr/hoteldetail"
 photoUpload:
   url: ""
 registry: []
-faqs: []
+faqs:
+  - q: "Where are the ceremony and reception being held?"
+    a: "Both the ceremony and reception will be held at Chicheley Hall, Chicheley Road, Newport Pagnell, MK16 9JJ."
+  - q: "Is there parking at Chicheley Hall?"
+    a: "Yes, there is plenty of free parking at the venue."
+  - q: "Are electric vehicle charging facilities available?"
+    a: "Yes. Multiple Roam Type 2 charging ports are available. Payment can be made through the Roam app or by contactless payment."
+  - q: "Is accommodation available at Chicheley Hall?"
+    a: "Yes. There are 33 individually furnished bedrooms overlooking the gardens. Rooms include a TV, en suite bathroom, tea and coffee making facilities, and breakfast the following morning."
+  - q: "How can I book accommodation at Chicheley Hall?"
+    a: "Please contact the sales team on 01234 230 396 or email enquiries@chicheleyhall.co.uk."
+  - q: "Is there another nearby hotel?"
+    a: "Yes. The Holiday Inn Milton Keynes East is on London Road, Newport Pagnell, MK16 0JA, less than three miles from the venue."
+  - q: "How can I get to and from the venue?"
+    a: "There are plenty of local taxi firms available if you require transport."
+  - q: "What time can I arrive at the venue?"
+    a: "Guests are welcome to arrive from 1:00 PM for drinks and canapés. The ceremony will begin at 2:00 PM."
+  - q: "When can I check in to my room at Chicheley Hall?"
+    a: "Check-in is from 3:00 PM, so there will be plenty of time after the wedding breakfast to get checked-in."
+  - q: "When is check-out at Chicheley Hall?"
+    a: "Check-out is by 11:00 AM."  
+  - q: Can I bring my children to the wedding?
+    a: "Due to guest number limitations, we can only accomodate children of our immediate family."
