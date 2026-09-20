@@ -1,18 +1,9 @@
 baseURL: https://danlauren.wedding
-title: Our Wedding
-theme: ["PaperMod"]
+title: Lauren Cheveralls & Daniel Welch
+theme: ["EternalVows"]
 
-menu:
-  main:
-    - identifier: categories
-      name: categories
-      url: /categories/
-      weight: 10
-    - identifier: tags
-      name: tags
-      url: /tags/
-      weight: 20
-    - identifier: example
-      name: example.org
-      url: https://example.org
-      weight: 30
+params:
+  description: Our wedding celebration
+  assets:
+    disableFingerprinting: false
+

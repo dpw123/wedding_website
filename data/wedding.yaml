@@ -1,0 +1,33 @@
+coupleNames: "Lauren Cheveralls & Daniel Welch"
+dateDisplay: "19 September 2026"
+locationShort: ""
+
+ui:
+  title: "Lauren Cheveralls & Daniel Welch"
+  monogram: "You're invited"
+  footerNote: "Made with love for family and friends."
+  rsvpText: "Please let us know if you can make it."
+  photoshareText: "We'd love to see the day through your eyes. Add your pictures to our shared album!"
+  colors:
+    accent1: "#a3bcd6"
+    accent2: "#d7e5f3"
+    accent3: "#f7eddc"
+    baseTop: "#F2EEE8"
+    baseBottom: "#DCD2C6"
+    radial1: "rgba(249, 235, 230, 0.45)"
+    radial2: "rgba(228, 193, 182, 0.38)"
+
+rsvp:
+  buttons: []
+
+schedule: []
+venues: []
+photoUpload:
+  url: ""
+registry: []
+faqs: []
+
+slideshow:
+  intervalMs: 6000
+  transitionMs: 1200
+  photos: []

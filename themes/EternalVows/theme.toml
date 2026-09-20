@@ -1,0 +1,9 @@
+name = "EternalVows"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "A data-driven wedding invitation theme inspired by eternalvows."
+homepage = "https://github.com/jacoknapp/eternalvows"
+min_version = "0.146.0"
+
+[author]
+name = "Wedding project"

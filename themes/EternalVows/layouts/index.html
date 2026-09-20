@@ -1,0 +1,69 @@
+{{ define "main" }}
+{{ $wedding := hugo.Data.wedding }}
+{{ $colors := $wedding.ui.colors }}
+{{ $story := site.GetPage "/posts/aboutus" }}
+<style>
+  :root {
+    --accent-1: {{ $colors.accent1 | default "#E4C1B6" }};
+    --accent-2: {{ $colors.accent2 | default "#DCD2C6" }};
+    --accent-3: {{ $colors.accent3 | default "#B9C8B5" }};
+    --bg-base-top: {{ $colors.baseTop | default "#F9EBE6" }};
+    --bg-base-bottom: {{ $colors.baseBottom | default "#F2EEE8" }};
+    --bg-r1: {{ $colors.radial1 | default "rgba(242, 238, 232, 0.45)" | safeCSS }};
+    --bg-r2: {{ $colors.radial2 | default "rgba(249, 235, 230, 0.38)" | safeCSS }};
+  }
+</style>
+<div class="bg" aria-hidden="true">
+  {{ range $index, $photo := $wedding.slideshow.photos }}
+    <div class="bg-slide{{ if eq $index 0 }} active{{ end }}" style="background-image:url('{{ $photo | relURL }}')"></div>
+  {{ end }}
+</div>
+
+<main id="content">
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="monogram">{{ $wedding.ui.monogram | default "You're invited" }}</span>
+      <h1 class="names-image"><img src="{{ "images/names_w.png" | relURL }}" alt="{{ $wedding.coupleNames | default site.Title }}"></h1>
+      {{ if or $wedding.dateDisplay $wedding.locationShort }}
+        <div class="tagline">
+          {{ with $wedding.dateDisplay }}<span class="date">{{ . }}</span>{{ end }}
+          {{ if and $wedding.dateDisplay $wedding.locationShort }}<span aria-hidden="true"> &bull; </span>{{ end }}
+          {{ with $wedding.locationShort }}<span>{{ . }}</span>{{ end }}
+        </div>
+      {{ end }}
+      <nav class="button-row" aria-label="Invitation sections">
+        {{ with $wedding.rsvp.buttons }}{{ if gt (len .) 0 }}<a class="button primary" href="#rsvp">RSVP</a>{{ end }}{{ end }}
+        {{ if $story }}<a class="button" href="#story">Story</a>{{ end }}
+        {{ with $wedding.schedule }}{{ if gt (len .) 0 }}<a class="button" href="#schedule">Schedule</a>{{ end }}{{ end }}
+        {{ with $wedding.venues }}{{ if gt (len .) 0 }}<a class="button" href="#venue">{{ if gt (len .) 1 }}Venues{{ else }}Venue{{ end }}</a>{{ end }}{{ end }}
+        {{ with $wedding.photoUpload.url }}<a class="button" href="#photoshare">Share Photos</a>{{ end }}
+        {{ with $wedding.registry }}{{ if gt (len .) 0 }}<a class="button" href="#registry">Registry</a>{{ end }}{{ end }}
+        {{ with $wedding.faqs }}{{ if gt (len .) 0 }}<a class="button" href="#faqs">FAQ</a>{{ end }}{{ end }}
+      </nav>
+    </div>
+  </header>
+
+  {{ with $wedding.rsvp.buttons }}
+    {{ if gt (len .) 0 }}<section id="rsvp"><div class="container"><h2>RSVP</h2><p class="muted">{{ $wedding.ui.rsvpText | default "Please let us know if you can make it." }}</p><div class="button-row">{{ range . }}<a class="button primary" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}</div></div></section>{{ end }}
+  {{ end }}
+
+  {{ if $story }}<section id="story"><div class="container"><h2>Our Story</h2><div class="prose muted">{{ $story.Content }}</div></div></section>{{ end }}
+
+  {{ with $wedding.schedule }}
+    {{ if gt (len .) 0 }}<section id="schedule"><div class="container"><h2>Schedule</h2><div class="grid">{{ range . }}<article class="card"><div class="row"><strong>{{ .title }}</strong><span class="pill">{{ .time }}</span></div><div class="muted card-detail">{{ .details }}</div></article>{{ end }}</div></div></section>{{ end }}
+  {{ end }}
+
+  {{ with $wedding.venues }}
+    {{ if gt (len .) 0 }}<section id="venue"><div class="container"><h2>{{ if gt (len .) 1 }}Venues{{ else }}Venue{{ end }}</h2><div class="grid">{{ range . }}{{ $venue := . }}<article class="card"><div class="row"><div>{{ with .label }}<span class="pill">{{ . }}</span>{{ end }}<strong class="venue-name">{{ .name }}</strong></div>{{ with .mapUrl }}<a class="pill" href="{{ . }}" target="_blank" rel="noopener">{{ $venue.mapCta | default "Open Map" }}</a>{{ end }}</div><div class="muted card-detail">{{ .address }}</div>{{ with .notes }}<div class="muted card-detail">{{ . }}</div>{{ end }}</article>{{ end }}</div></div></section>{{ end }}
+  {{ end }}
+
+  {{ with $wedding.photoUpload.url }}<section id="photoshare"><div class="container"><h2>Share Your Photos</h2><p class="muted">{{ $wedding.ui.photoshareText | default "We'd love to see the day through your eyes. Add your pictures to our shared album!" }}</p><div class="button-row"><a class="button primary" href="{{ . }}" target="_blank" rel="noopener">{{ $wedding.photoUpload.label | default "Upload to Album" }}</a></div></div></section>{{ end }}
+
+  {{ with $wedding.registry }}{{ if gt (len .) 0 }}<section id="registry"><div class="container"><h2>Registry</h2><div class="button-row">{{ range . }}<a class="button" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}</div></div></section>{{ end }}{{ end }}
+
+  {{ with $wedding.faqs }}{{ if gt (len .) 0 }}<section id="faqs"><div class="container"><h2>FAQ</h2><div class="grid two">{{ range . }}<article class="card"><strong>{{ .q }}</strong><div class="muted card-detail">{{ .a }}</div></article>{{ end }}</div></div></section>{{ end }}{{ end }}
+
+  <footer>{{ $wedding.ui.footerNote | default "Made with love for family and friends." }}</footer>
+</main>
+
+{{ end }}

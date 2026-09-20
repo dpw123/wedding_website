@@ -1,0 +1,15 @@
+{{ define "main" }}
+<main class="page-shell">
+  <section class="container">
+    <h1>{{ .Title }}</h1>
+    <div class="grid">
+      {{ range .Pages }}
+        <article class="card">
+          <a class="pill" href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ with .Summary }}<div class="muted card-detail">{{ . }}</div>{{ end }}
+        </article>
+      {{ end }}
+    </div>
+  </section>
+</main>
+{{ end }}

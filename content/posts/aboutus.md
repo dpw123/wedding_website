@@ -7,7 +7,7 @@ As with many modern day love stories, we met online back in August 2024, because
 
 During the first few months we completed on our new houses, Dan spontaneously bought a puppy, we enjoyed a break to Norfolk and it was very clear that this was something special.
 
-Introducing Children, families and friends was an important step and it has been lovely for both of us to be so accepted and welcomed.
+Introducing our children, families and friends was an important step and it has been lovely for both of us to be so accepted and welcomed.
 
 To continue on in the modern theme of things we will be starting married life living apart in our respective homes, as logistically this works best for us and our children. Also this may be the recipe for a long and happy marriage!! 
 
