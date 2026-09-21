@@ -41,11 +41,11 @@
     </div>
   </header>
 
-  {{ if $story }}<section id="story"><div class="container"><h2>{{ $sections.story.heading | default "Our Story" }}</h2><div class="prose muted">{{ $story.Content }}</div></div></section>{{ end }}
+  {{ if $story }}<section id="story" class="collapsible-section"><div class="container"><h2>{{ $sections.story.heading | default "Our Story" }}</h2><div class="prose muted">{{ $story.Content }}</div></div></section>{{ end }}
 
   {{ with $wedding.schedule }}
     {{ if gt (len .) 0 }}
-    <section id="schedule">
+    <section id="schedule" class="collapsible-section">
         <div class="container">
         <h2>{{ $sections.schedule.heading | default "Schedule" }}</h2>
         <div class="grid">{{ range . }}
@@ -61,21 +61,21 @@
   {{ end }}
 
   {{ with $wedding.venues }}
-    {{ if gt (len .) 0 }}<section id="venue"><div class="container"><h2>{{ if gt (len .) 1 }}{{ $sections.venue.headingPlural | default "Venues" }}{{ else }}{{ $sections.venue.heading | default "Venue" }}{{ end }}</h2><div class="grid">{{ range . }}{{ $venue := . }}<article class="card"><div class="row"><div>{{ with .label }}<span class="pill">{{ . }}</span>{{ end }}<strong class="venue-name">{{ .name }}</strong></div><div class="button-row">{{ with .mapLink }}<a class="pill" href="{{ . }}" target="_blank" rel="noopener">{{ $sections.venue.mapLink | default "Open Map" }}</a>{{ end }}{{ with .website }}<a class="pill" href="{{ . }}" target="_blank" rel="noopener">{{ $sections.venue.websiteLink | default "Visit Website" }}</a>{{ end }}</div></div><div class="muted card-detail">{{ .address }}</div>{{ with .notes }}<div class="muted card-detail">{{ . }}</div>{{ end }}</article>{{ end }}</div></div></section>{{ end }}
+    {{ if gt (len .) 0 }}<section id="venue" class="collapsible-section"><div class="container"><h2>{{ if gt (len .) 1 }}{{ $sections.venue.headingPlural | default "Venues" }}{{ else }}{{ $sections.venue.heading | default "Venue" }}{{ end }}</h2><div class="grid">{{ range . }}{{ $venue := . }}<article class="card"><div class="row"><div>{{ with .label }}<span class="pill">{{ . }}</span>{{ end }}<strong class="venue-name">{{ .name }}</strong></div><div class="button-row">{{ with .mapLink }}<a class="pill" href="{{ . }}" target="_blank" rel="noopener">{{ $sections.venue.mapLink | default "Open Map" }}</a>{{ end }}{{ with .website }}<a class="pill" href="{{ . }}" target="_blank" rel="noopener">{{ $sections.venue.websiteLink | default "Visit Website" }}</a>{{ end }}</div></div><div class="muted card-detail">{{ .address }}</div>{{ with .notes }}<div class="muted card-detail">{{ . }}</div>{{ end }}</article>{{ end }}</div></div></section>{{ end }}
   {{ end }}
 
   {{ with $wedding.rsvp }}
-    {{ if or .embedUrl (gt (len .buttons) 0) }}<section id="rsvp"><div class="container"><h2>{{ $sections.rsvp.heading | default "RSVP" }}</h2>
+    {{ if or .embedUrl (gt (len .buttons) 0) }}<section id="rsvp" class="collapsible-section"><div class="container"><h2>{{ $sections.rsvp.heading | default "RSVP" }}</h2>
       <p class="prose muted">{{ $wedding.ui.rsvpText | default "Please let us know if you can make it." }}</p>
       {{ with .embedUrl }}<iframe class="rsvp-embed" src="{{ . }}" title="{{ $wedding.rsvp.embedTitle | default "RSVP form" }}"  frameborder="0"></iframe>{{ end }}
       {{ if gt (len .buttons) 0 }}<div class="button-row">{{ range .buttons }}<a class="button primary" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}</div>{{ end }}</div></section>{{ end }}
   {{ end }}
 
-  {{ with $wedding.photoUpload.url }}<section id="photoshare"><div class="container"><h2>{{ $sections.photoshare.heading | default "Share Your Photos" }}</h2><p class="muted">{{ $wedding.ui.photoshareText | default "We'd love to see the day through your eyes. Add your pictures to our shared album!" }}</p><div class="button-row"><a class="button primary" href="{{ . }}" target="_blank" rel="noopener">{{ $sections.photoshare.link | default "Upload to Album" }}</a></div></div></section>{{ end }}
+  {{ with $wedding.photoUpload.url }}<section id="photoshare" class="collapsible-section"><div class="container"><h2>{{ $sections.photoshare.heading | default "Share Your Photos" }}</h2><p class="muted">{{ $wedding.ui.photoshareText | default "We'd love to see the day through your eyes. Add your pictures to our shared album!" }}</p><div class="button-row"><a class="button primary" href="{{ . }}" target="_blank" rel="noopener">{{ $sections.photoshare.link | default "Upload to Album" }}</a></div></div></section>{{ end }}
 
-  {{ with $wedding.registry }}{{ if gt (len .) 0 }}<section id="registry"><div class="container"><h2>{{ $sections.registry.heading | default "Registry" }}</h2><div class="button-row">{{ range . }}<a class="button" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}</div></div></section>{{ end }}{{ end }}
+  {{ with $wedding.registry }}{{ if gt (len .) 0 }}<section id="registry" class="collapsible-section"><div class="container"><h2>{{ $sections.registry.heading | default "Registry" }}</h2><div class="button-row">{{ range . }}<a class="button" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}</div></div></section>{{ end }}{{ end }}
 
-  {{ with $wedding.faqs }}{{ if gt (len .) 0 }}<section id="faqs"><div class="container"><h2>{{ $sections.faqs.heading | default "FAQ" }}</h2><div class="grid two">{{ range . }}<article class="card"><strong>{{ .q }}</strong><div class="muted card-detail">{{ .a }}</div></article>{{ end }}</div></div></section>{{ end }}{{ end }}
+  {{ with $wedding.faqs }}{{ if gt (len .) 0 }}<section id="faqs" class="collapsible-section"><div class="container"><h2>{{ $sections.faqs.heading | default "FAQ" }}</h2><div class="grid two">{{ range . }}<article class="card"><strong>{{ .q }}</strong><div class="muted card-detail">{{ .a }}</div></article>{{ end }}</div></div></section>{{ end }}{{ end }}
 
   <footer>{{ $wedding.ui.footerNote | default "Made with love for family and friends." }}</footer>
 </main>

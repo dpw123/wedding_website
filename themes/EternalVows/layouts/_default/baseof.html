@@ -15,5 +15,51 @@
 <body>
   <img class="site-logo" src="{{ "images/logo.png" | relURL }}" alt="">
   {{ block "main" . }}{{ end }}
+  <script>
+    const collapsibleSections = document.querySelectorAll('.collapsible-section');
+    const sectionLinks = document.querySelectorAll('a[href^="#"]');
+    const mobileLayout = window.matchMedia('(max-width: 600px)');
+
+    function setCollapsed(section, collapsed) {
+      section.classList.toggle('section-collapsed', collapsed);
+      const heading = section.querySelector('h2');
+      if (heading) heading.setAttribute('aria-expanded', String(!collapsed));
+    }
+
+    function syncMobileSections() {
+      collapsibleSections.forEach((section) => {
+        setCollapsed(section, mobileLayout.matches);
+      });
+    }
+
+    collapsibleSections.forEach((section) => {
+      const heading = section.querySelector('h2');
+      if (!heading) return;
+      heading.setAttribute('role', 'button');
+      heading.setAttribute('tabindex', '0');
+      const toggle = () => {
+        if (mobileLayout.matches) {
+          setCollapsed(section, !section.classList.contains('section-collapsed'));
+        }
+      };
+      heading.addEventListener('click', toggle);
+      heading.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggle();
+        }
+      });
+    });
+
+    sectionLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        const section = document.querySelector(link.getAttribute('href'));
+        if (section && mobileLayout.matches) setCollapsed(section, false);
+      });
+    });
+
+    syncMobileSections();
+    mobileLayout.addEventListener('change', syncMobileSections);
+  </script>
 </body>
 </html>
