@@ -33,6 +33,9 @@ ui:
       nav: "Share Photos"
       heading: "Share Your Photos"
       link: "Upload to Album"
+    pictures:
+      nav: "Pictures"
+      heading: "Pictures"
     registry:
       nav: "Registry"
       heading: "Registry"
@@ -100,6 +103,9 @@ venues:
     website: "https://www.ihg.com/holidayinn/hotels/gb/en/newport-pagnell/mlklr/hoteldetail"
 photoUpload:
   url: ""
+pictures:
+  embedUrl: "https://pics.danlauren.wedding/embed"
+  embedTitle: "Wedding Photo Galleries"
 registry: []
 faqs:
   - q: "Where are the ceremony and reception being held?"

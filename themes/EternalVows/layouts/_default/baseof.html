@@ -60,6 +60,15 @@
 
     syncMobileSections();
     mobileLayout.addEventListener('change', syncMobileSections);
+
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'resize-galleries-embed' && typeof event.data.height === 'number') {
+        const iframe = document.getElementById('pictures-embed');
+        if (iframe) {
+          iframe.style.height = event.data.height + 'px';
+        }
+      }
+    });
   </script>
 </body>
 </html>
