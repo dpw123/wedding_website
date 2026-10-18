@@ -89,6 +89,9 @@ schedule:
   - title: Party
     time: "7:00 PM"
     details: "Evening Guests Arrive, Cake Cutting, Dancing and Celebration"
+  - title: Graze
+    time: "8:00 PM"
+    details: "An evening buffet for all guests to enjoy"
   - title: Sleep
     time: "00:01 AM"
     details: "Our 3 Year anniversary, and the end of the celebrations"
